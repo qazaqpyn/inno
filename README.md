@@ -60,3 +60,8 @@ DB_PASSWORD=***
 
 ```
 
+## Access
+
+- Frontend: http://127.0.0.1:3000/
+- Backend: http://127.0.0.1:8081/api
+
