@@ -22,7 +22,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * Get all articles and return paginated results
+     * Get all articles and return results
      *
      * @return \Illuminate\Http\Response
      */
@@ -60,7 +60,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * Search for articles and return paginated results
+     * Search for articles and return results
      *
      * @param Request $request
      * @param String $id
@@ -90,7 +90,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * Get the user's personalized articles and return paginated results
+     * Get the user's personalized articles and return results
      *
      * @param Request $request
      * @return \Illuminate\Http\Response
