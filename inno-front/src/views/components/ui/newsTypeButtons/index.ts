@@ -1,0 +1,1 @@
+export {NewsTypeButtons} from './NewsTypeButtons';

@@ -1,0 +1,25 @@
+.preference__main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    gap: 1rem;
+    h4{
+        text-align: center;
+    }
+}
+
+.preference__form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    div{
+        padding: 1rem;
+        border: 1px solid #ccc;
+        p{
+            margin-top: 0;
+            text-align: center;
+        }
+    }
+}

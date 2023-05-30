@@ -1,0 +1,38 @@
+version: '3'
+services:
+  db:
+    image: mysql
+    container_name: mysql
+    restart: unless-stopped
+    ports: 
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php-fpm
+    restart: always
+    expose:
+      - 9000
+    volumes:
+      - .:/var/www/html
+      - - /var/www/html/vendor
+    depends_on:
+      - db
+    entrypoint: sh -c "sleep 5 && php /var/www/html/artisan migrate && php-fpm"
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    restart: always
+    ports:
+      - "8081:80"
+    depends_on:
+      - app

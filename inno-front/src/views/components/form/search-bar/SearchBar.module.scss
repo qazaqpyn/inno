@@ -1,0 +1,43 @@
+.filter__div{
+    font-size: 1rem;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    max-width: 250px;
+    gap: 10px;
+
+    >p{
+        margin: 0.5rem 0 0 0 !important;
+    }
+
+    .__date{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        
+        gap: 10px;
+        >p{
+            flex: 1;
+            margin: 0 !important;
+        }
+        >input{
+            flex: 3;
+        }
+    }
+}
+
+.search__div{
+    font-size: 1rem;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+    max-width: 250px;
+    gap: 10px;
+    >input{
+        flex: 1;
+    }
+}

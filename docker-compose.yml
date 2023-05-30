@@ -1,0 +1,55 @@
+version: '3'
+services:
+  db:
+    image: mysql
+    container_name: mysql
+    restart: unless-stopped
+    ports: 
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./inno-backend/data/mysql:/var/lib/mysql
+  app:
+    build: 
+      context: ./inno-backend
+      dockerfile: Dockerfile
+    container_name: php-fpm
+    restart: always
+    expose:
+      - 9000
+    volumes:
+      - ./inno-backend:/var/www/html
+      - /var/www/html/vendor
+    depends_on:
+      - db
+    entrypoint: sh -c "sleep 5 && php /var/www/html/artisan migrate && php-fpm"
+
+  front:
+    build: 
+      context: ./inno-front
+      dockerfile: Dockerfile
+    container_name: react-app
+    restart: always
+    expose:
+      - 3000
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./inno-front:/app
+      - /app/node_modules
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    restart: always
+    ports:
+      - "8081:80"
+    depends_on:
+      - app
+      - front
+
+
